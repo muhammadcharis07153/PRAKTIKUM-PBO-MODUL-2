@@ -12,6 +12,7 @@ public class ApkParkir {
     static Scanner input = new Scanner(System.in);
     
     public static void main(String[] args) {
+        ApkParkir data = new ApkParkir();
                 System.out.println("Program Sistem Informasi Data Parkir Bandara Juanda");
                 int adela07128_pilihan;
                 do { 
@@ -40,7 +41,7 @@ public class ApkParkir {
             }while(adela07128_pilihan!=5);
     }
     
-    static void adela07128_input() {
+    void adela07128_input() {
         System.out.println("Kondisi Kendaraan       = "+Adela07128_Kondisi.kondisikendaraan[0]);
         System.out.print("Masukkan Nama Petugas  = ");
         String adela07128_petugas = input.next();
@@ -68,7 +69,7 @@ public class ApkParkir {
         
     }
     
-    static void adela07128_updatedata(){
+    void adela07128_updatedata(){
         int adela07128_pil;
         String namabaru; 
         String platnomorbaru;
@@ -113,7 +114,7 @@ public class ApkParkir {
         }
     }   
         
-    static void adela07128_lihatdata(){
+    void adela07128_lihatdata(){
             if(kendaraan.isEmpty()){
             System.out.println("DATA PARKIR KOSONG");
         }else{
@@ -129,7 +130,7 @@ public class ApkParkir {
     }
     }
     
-    static void adela07128_cetaknota(){
+    void adela07128_cetaknota(){
         int adela07128_x;
             if(kendaraan.isEmpty()){
             System.out.println("DATA PARKIR KOSONG");
