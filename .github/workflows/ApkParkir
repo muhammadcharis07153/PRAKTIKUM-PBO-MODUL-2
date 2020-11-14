@@ -1,0 +1,176 @@
+package apkparkir;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Date;
+
+public class ApkParkir {
+    static ArrayList <Adela07128_Kendaraan> kendaraan = new ArrayList();
+    static ArrayList <Adela07128_Nota> nota = new ArrayList();
+    static Scanner input = new Scanner(System.in);
+    
+    public static void main(String[] args) {
+           ApkParkir data = new ApkParkir();
+                System.out.println("Program Sistem Informasi Data Parkir Bandara Juanda");
+                int adela07128_pilihan;
+                do { 
+                    System.out.println("[1] Input data");
+                    System.out.println("[2] Update data");
+                    System.out.println("[3] Lihat data"); 
+                    System.out.println("[4] Cetak nota");
+                    System.out.println("[5] Exit");
+                    System.out.print("Pilihan = ");
+                    adela07128_pilihan = input.nextInt();
+                    switch(adela07128_pilihan){
+                       case 1:
+                           adela07128_input();
+                           break;
+                       case 2 :
+                           adela07128_updatedata();
+                           break;
+                       case 3 :
+                           adela07128_lihatdata();
+                           break;
+                       case 4 : 
+                           adela07128_cetaknota();
+                           break;
+                } 
+                
+            }while(adela07128_pilihan!=5);
+    }
+    
+    void adela07128_input() {
+        System.out.println("Kondisi Kendaraan       = "+Adela07128_Kondisi.kondisikendaraan[0]);
+        System.out.print("Masukkan Nama Petugas  = ");
+        String adela07128_petugas = input.next();
+        System.out.println("-------Mobil atau Motor--------");
+        System.out.print("Masukkan Jenis Kendaraan  = ");
+        String adela07128_jeniskendaraan = input.next();
+        System.out.print("Masukkan Plat Nomor       = ");
+        String adela07128_platnomor = input.next();
+        kendaraan.add(new Adela07128_Kendaraan(adela07128_platnomor,adela07128_jeniskendaraan));
+        System.out.print("Masukkan Tanggal Masuk (MM/dd/yyyy)= ");
+        Date Tanggalparkir =new Date(input.next());
+        String adela07128_jammasuk;
+        String adela07128_menitmasuk;                
+        DateFormat formatadela07128_Hmasuk = new SimpleDateFormat("HH");
+        DateFormat formatadela07128_Mmasuk = new SimpleDateFormat("mm");
+        Date getadela07128_jammasuk = new Date();
+        Date getadela07128_menitmasuk = new Date(); 
+        adela07128_jammasuk = formatadela07128_Hmasuk.format(getadela07128_jammasuk);
+        adela07128_menitmasuk = formatadela07128_Mmasuk.format(getadela07128_menitmasuk);
+        System.out.print("Masukkan Jam Keluar       = ");
+        int adela07128_jamkeluar = input.nextInt();
+        System.out.print("Masukkan Menit Keluar     = ");
+        int adela07128_menitkeluar = input.nextInt();
+       nota.add(new Adela07128_Nota(Tanggalparkir,adela07128_jammasuk,adela07128_menitmasuk,adela07128_jamkeluar,adela07128_menitkeluar,adela07128_petugas)); 
+        
+    }
+    
+    void adela07128_updatedata(){
+        int adela07128_pil;
+        String namabaru; 
+        String platnomorbaru;
+        String jeniskendaraanbaru;
+        Date tglbaru;
+        String jambaru;
+        String menitbaru;
+        int adela07128_index;
+        for(int adela07128_i=0;adela07128_i<kendaraan.size();adela07128_i++){
+        System.out.println("["+adela07128_i+"] Plat nomor          = "+kendaraan.get(adela07128_i).adela07128_platnomor);                        
+        }        
+        System.out.print("Plat nomor yang mau diupdate = ");
+        adela07128_index = input.nextInt();
+      
+        System.out.println("1. Update nama petugas\n 2. Update jenis kendaraan\n 3. Update Plat nomor\n 4. Update jam keluar\n 5. Update Menit Keluar\n ");
+        System.out.print("Pilihan = ");
+        adela07128_pil= input.nextInt();
+        if(adela07128_pil==1){
+            System.out.print("Masukkan nama baru = ");
+            namabaru = input.next();
+            nota.get(adela07128_index).adela07128_petugas = namabaru;
+        }
+        else if(adela07128_pil==2){
+            System.out.print("Masukkan jenis kendaraan baru = ");
+            jeniskendaraanbaru = input.next();
+            kendaraan.get(adela07128_index).adela07128_jeniskendaraan = jeniskendaraanbaru;
+        }
+        else if(adela07128_pil==3){
+            System.out.print("Masukkan plat nomor baru = ");
+            platnomorbaru = input.next();
+            kendaraan.get(adela07128_index).adela07128_platnomor = platnomorbaru;
+        }
+        else if(adela07128_pil==4){
+            System.out.print("Masukkan jam masuk = ");
+            jambaru = input.next();
+            nota.get(adela07128_index).adela07128_jammasuk = jambaru;
+        }
+        else{
+            System.out.print("Masukkan menit masuk = ");
+            menitbaru = input.next();
+            nota.get(adela07128_index).adela07128_menitmasuk = menitbaru;
+        }
+    }   
+        
+    void adela07128_lihatdata(){
+            if(kendaraan.isEmpty()){
+            System.out.println("DATA PARKIR KOSONG");
+        }else{
+        for(int adela07128_i=0;adela07128_i<kendaraan.size();adela07128_i++){
+        System.out.println("Nama Petugas Parkir = "+nota.get(adela07128_i).getadela07128_petugas());
+        System.out.println("Jenis kendaraan     = "+kendaraan.get(adela07128_i).getadela07128_JenisKendaraan());
+        System.out.println("Plat nomor          = "+kendaraan.get(adela07128_i).getadela07128_PlatNomor());            
+        System.out.println("Tanggal parkir      = "+new SimpleDateFormat("dd-MM-yyyy").format(nota.get(adela07128_i).adela07128_Tanggalparkir));
+        System.out.println("Waktu masuk         = "+nota.get(0).adela07128_jammasuk + " : " + nota.get(0).adela07128_menitmasuk + " WIB");
+        System.out.println("Waktu keluar        = "+nota.get(0).adela07128_jamkeluar + " : " + nota.get(0).adela07128_menitkeluar + " WIB");
+        System.out.println("-----------------------------------------------------------");
+        }
+    }
+    }
+    
+    void adela07128_cetaknota(){
+        int adela07128_x;
+            if(kendaraan.isEmpty()){
+            System.out.println("DATA PARKIR KOSONG");
+        }else{
+                for(int adela07128_i=0;adela07128_i<kendaraan.size();adela07128_i++){
+           System.out.println("["+adela07128_i+"]"+"Plat nomor          = "+kendaraan.get(adela07128_i).getadela07128_PlatNomor());                        
+        }
+        System.out.print("index plat nomor = ");
+        adela07128_x = input.nextInt();
+        int adela07128_timeH = Integer.parseInt(nota.get(0).adela07128_jammasuk);
+        int adela07128_timeM = Integer.parseInt(nota.get(0).adela07128_menitmasuk);        
+        System.out.println("====BANDARA UDARA JUANDA SURABAYA====");
+        System.out.println("====================================");
+            System.out.println("Kondisi kendaraan   = "+Adela07128_Kondisi.kondisikendaraan[1]+"\n");
+            System.out.println("Nama Petugas Parkir = "+nota.get(adela07128_x).getadela07128_petugas());
+            System.out.println("Jenis kendaraan     = "+kendaraan.get(adela07128_x).getadela07128_JenisKendaraan());
+            System.out.println("Plat nomor          = "+kendaraan.get(adela07128_x).getadela07128_PlatNomor());
+            System.out.println("Tanggal parkir      = "+new SimpleDateFormat("dd-MM-yyyy").format(nota.get(adela07128_x).adela07128_Tanggalparkir));
+            System.out.println("Waktu masuk         = " + adela07128_timeH + " : " + adela07128_timeM + " WIB");
+            System.out.println("Waktu keluar        = " +nota.get(adela07128_x).adela07128_jamkeluar + " : " + nota.get(adela07128_x).adela07128_menitkeluar + " WIB");
+            int durasijam = nota.get(adela07128_x).adela07128_jamkeluar - adela07128_timeH;
+            int durasimenit = nota.get(adela07128_x).adela07128_menitkeluar - adela07128_timeM;
+            System.out.println("Durasi parkir       = " + durasijam + " : " + durasimenit);  
+            if ("Mobil".equals(kendaraan.get(adela07128_x).getadela07128_JenisKendaraan())){
+                int harga1 = durasijam*5000;
+                int harga2 = durasimenit*100;
+                int totalH = harga1 + harga2;
+                System.out.println("Harga parkir        = "+totalH);
+            }
+            else if ("Motor".equals(kendaraan.get(adela07128_x).getadela07128_JenisKendaraan())){
+                int harga1 = durasijam*2000;
+                int harga2 = durasimenit*50;
+                int totalH = harga1 + harga2;
+                System.out.println("Harga parkir        = "+totalH);
+            }
+            else{
+                System.out.println("PILIHAN KENDARAAN SALAH");
+            }
+        System.out.println("====================================");
+        kendaraan.remove(adela07128_x);
+    }
+}
+}
